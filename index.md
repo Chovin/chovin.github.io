@@ -22,12 +22,12 @@ Here are some things I've been up to recently in my free time.
 Module Contributions:  
 
 + Community Engagement Centered: 
-    * [Welcome](https://cogs.red/cogs/irdumbs/Dumb-Cogs/welcome/)
-    * [Adventure port](https://cogs.red/cogs/irdumbs/Dumb-Cogs/adventure/)
-    * [Snacktime](https://cogs.red/cogs/irdumbs/Dumb-Cogs/snacktime/) 
-    * [EconomyTrickle](https://cogs.red/cogs/irdumbs/Dumb-Cogs/economytrickle/)
+    * [Welcome](https://cogs.red/cogs/irdumbs/Dumb-Cogs/welcome/) - customizable welcome messages
+    * [Adventure port](https://cogs.red/cogs/irdumbs/Dumb-Cogs/adventure/) - team-based port of the original text adventure game, Colossal Cave
+    * [Snacktime](https://cogs.red/cogs/irdumbs/Dumb-Cogs/snacktime/) - currency handouts to active conversations via a lovable persona
+    * [EconomyTrickle](https://cogs.red/cogs/irdumbs/Dumb-Cogs/economytrickle/) - adjustable currency trickle to active members
 + Tools
-    * [REPL fork](https://cogs.red/cogs/irdumbs/Dumb-Cogs/repl/)
+    * [REPL fork](https://cogs.red/cogs/irdumbs/Dumb-Cogs/repl/) - tools to turn Discord into a bot development IDE
     * [keydistrib - key manager](https://cogs.red/cogs/FreeCodeCampGuam/FCCG-Cogs/keydistrib/) (project manager)
         - used in FCCG Bootcamp + server
 + Entertainment / Misc
