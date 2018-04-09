@@ -63,9 +63,9 @@ The following lists most of the events and projects we've done as a group.
     (Node/Lua)
 * [GLSL Explorations](https://github.com/Chovin/VEDA-Notes)  
 (GLSL/Python)
-    - <img src="assets/osc-hand.gif" width="200">  
-    iOS Gyro controlled hand
-    - <img src="assets/osc-test.gif" width="200">  
-    Machine Learning / Computer Vision Classification 
-    - <img src="assets/veda-refract3.gif" width="200">  
-    Reflections / Refractions 
+    - iOS Gyro controlled hand  
+    <img src="assets/osc-hand.gif" width="200">  
+    - Machine Learning / Computer Vision Classification  
+    <img src="assets/osc-test.gif" width="200">  
+    - Reflections / Refractions  
+    <img src="assets/veda-refract3.gif" width="200">  
