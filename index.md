@@ -45,7 +45,7 @@ In an effort to grow programming skills on our island, with support from many wo
 
 The following lists most of the events and projects we've done as a group.
 
-<a href="https://time.graphics/line/67138"><iframe width="100%" height="400" src="https://time.graphics/embed?v=1&id=67138" frameborder="0" allowfullscreen>&nbsp;</iframe></a>
+[![](assets/timeline.png)](https://time.graphics/line/67138)
 
 **Member Stories**:
 
