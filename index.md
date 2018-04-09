@@ -1,4 +1,4 @@
-## Brief Portfolio
+# Brief Portfolio
 
 I enjoy programming; I spend a lot of time in my code.  
 I also enjoy art and music and try to find ways to incorporate those into my projects.
@@ -7,9 +7,9 @@ Community engagement is my other passion, so since I've found my way into Open S
 
 Here are some things I've been up to recently in my free time.
 
-### Projects
+## Projects
 
-#### Red-DiscordBot
+### Red-DiscordBot
 
 [![cogs.red](assets/cogs.red.png)](https://cogs.red/)
 
@@ -37,7 +37,7 @@ Module Contributions:
     * [Jamcord - collaborative window into livecoding](https://cogs.red/cogs/FreeCodeCampGuam/FCCG-Cogs/jamcord/)
         - used at various events including [Algosix](https://algorave.com/wearesix/). ([clip of usage](https://youtu.be/bvDa0MHIK2c?t=20m35s))
 
-#### FreeCodeCamp Guam
+### FreeCodeCamp Guam
 
 ![FCCG Game Dev Bootcamp](https://scontent.fgum2-1.fna.fbcdn.net/v/t31.0-8/22426518_920147308151648_5919767287489941611_o.jpg?_nc_cat=0&oh=7e711e081c9f34d0ebdc1a11c04414a3&oe=5B5E3677)
 
