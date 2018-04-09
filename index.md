@@ -1,11 +1,11 @@
 ## Brief Portfolio
 
-I enjoy programming. I spend a lot of time in my code.  
+I enjoy programming; I spend a lot of time in my code.  
 I also enjoy art and music and try to find ways to incorporate those into my projects.
 
 Community engagement is my other passion, so since I've found my way into Open Source communities, I've been making roughly [1000 contributions yearly](https://github.com/Chovin).  
 
-Here are some of the things I've been up to recently in my free time.
+Here are some things I've been up to recently in my free time.
 
 ### Projects
 
