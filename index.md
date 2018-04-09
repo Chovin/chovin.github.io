@@ -55,7 +55,7 @@ The following lists most of the events and projects we've done as a group.
 
 **Projects along the way**:
 
-* [Web Dev Bootcamp Leaderboard](https://fccg-leaderboard.herokuapp.com/tributes.html?v=0.1.3) (not maintained)  
+* [Web Dev Bootcamp Leaderboard](https://fccg-leaderboard.herokuapp.com/) (not maintained)  
    (JavaScript/Python)
 * [Game Jam / Bootcamp Games](https://fccguam.itch.io/)  
 (JavaScript/Lua)
