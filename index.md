@@ -1,37 +1,64 @@
-## Welcome to GitHub Pages
+## Brief Portfolio
 
-You can use the [editor on GitHub](https://github.com/Chovin/chovin.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+I enjoy programming. I spend a lot of time in my code.  
+I also enjoy art and music and try to find ways to incorporate those into my projects.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Community engagement is my other passion, so since I've found my way into Open Source communities, I've been making roughly [1000 contributions yearly](https://github.com/Chovin).  
 
-### Markdown
+Here are some of the things I've been up to recently in my free time.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Projects
 
-```markdown
-Syntax highlighted code block
+#### Red-DiscordBot
 
-# Header 1
-## Header 2
-### Header 3
+[![cogs.red](assets/cogs.red.png)](https://cogs.red/)
 
-- Bulleted
-- List
+**[Red-DiscordBot](https://github.com/Cog-Creators/Red-DiscordBot)**: a modular chatbot for the popular gaming chat platform Discord.   
+**Lang**: Python  
+**Userbase**: 350,000+ users across official servers including Rocket League, Fortnite, and Clash Royale.  
+**Community**: 450+ module contributions by the community.  
+**Title**: Part Owner and Core Developer
 
-1. Numbered
-2. List
+Module Contributions:  
 
-**Bold** and _Italic_ and `Code` text
++ Community Engagement Centered: 
+    * [Welcome](https://cogs.red/cogs/irdumbs/Dumb-Cogs/welcome/)
+    * [Adventure port](https://cogs.red/cogs/irdumbs/Dumb-Cogs/adventure/)
+    * [Snacktime](https://cogs.red/cogs/irdumbs/Dumb-Cogs/snacktime/) 
+    * [EconomyTrickle](https://cogs.red/cogs/irdumbs/Dumb-Cogs/economytrickle/)
++ Tools
+    * [REPL fork](https://cogs.red/cogs/irdumbs/Dumb-Cogs/repl/)
+    * [keydistrib - key manager](https://cogs.red/cogs/FreeCodeCampGuam/FCCG-Cogs/keydistrib/) (project manager)
+        - used in FCCG Bootcamp + server
++ Entertainment / Misc
+    * [pico8 - bbs search](https://cogs.red/cogs/FreeCodeCampGuam/FCCG-Cogs/pico8/)
+    * [ffplay - local media player](https://cogs.red/cogs/FreeCodeCampGuam/FCCG-Cogs/ffplay/)
+        - used at FCCG Bootcamps
+    * [Jamcord - collaborative window into livecoding](https://cogs.red/cogs/FreeCodeCampGuam/FCCG-Cogs/jamcord/)
+        - used at various events including [Algosix](https://algorave.com/wearesix/). ([clip of usage](https://youtu.be/bvDa0MHIK2c?t=20m35s))
 
-[Link](url) and ![Image](src)
-```
+#### FreeCodeCamp Guam
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+![FCCG Game Dev Bootcamp](https://scontent.fgum2-1.fna.fbcdn.net/v/t31.0-8/22426518_920147308151648_5919767287489941611_o.jpg?_nc_cat=0&oh=7e711e081c9f34d0ebdc1a11c04414a3&oe=5B5E3677)
 
-### Jekyll Themes
+In an effort to grow programming skills on our island, with support from many wonderful sponsors, I've taken on leadership of FreeCodeCamp Guam in an effort to turn it into a community of learning and support for those brave enough to explore the creative power that is programming.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Chovin/chovin.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+The following lists most of the events and projects we've done as a group.
 
-### Support or Contact
+<a href="https://time.graphics/line/67138"><iframe width="100%" height="400" src="https://time.graphics/embed?v=1&id=67138" frameborder="0" allowfullscreen></iframe></a>
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**Member Stories**:
+
+* After FCCG bootcamp, an individual gets job at ISP, automates it, and gets promoted within 6 months.
+* FCCG helps place another individual in an internship position. Year later becomes software engineer at Uber.
+* A student's requests to join research projects are declined for 2 years. After becoming a FCCG intern, gets accepted to 2 Machine Learning research projects.
+
+**Projects along the way**:
+
+* [Web Dev Bootcamp Leaderboard](https://fccg-leaderboard.herokuapp.com/tributes.html?v=0.1.3) (not maintained)
+* [Game Jam / Bootcamp Games](https://fccguam.itch.io/)
+    - [Litghsaber](https://www.lexaloffle.com/bbs/?tid=30137) now has [iOS Gyro control](https://github.com/Chovin/Litghtsaber/tree/osc-gpio)
+* [GLSL Explorations](https://github.com/Chovin/VEDA-Notes)
+    - <img src="assets/osc-hand.gif" width=200> iOS Gyro controlled hand
+    - <img src="assets/osc-test.gif" width=200> Machine Learning / Computer Vision Classification 
+    - <img src="assets/veda-refract3.gif" width=200> Reflections / Refractions 
