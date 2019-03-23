@@ -39,7 +39,7 @@ Module Contributions:
 
 ### FreeCodeCamp Guam
 
-![FCCG Game Dev Bootcamp](https://scontent.fgum2-1.fna.fbcdn.net/v/t31.0-8/22426518_920147308151648_5919767287489941611_o.jpg?_nc_cat=0&oh=7e711e081c9f34d0ebdc1a11c04414a3&oe=5B5E3677)
+![FCCG Game Dev Bootcamp](assets/bootcamp.jpg)
 
 In an effort to grow programming skills on our island, with support from many wonderful sponsors, I've taken on leadership of FreeCodeCamp Guam in an effort to turn it into a community of learning and support for those brave enough to explore the creative power that is programming.
 
