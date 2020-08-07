@@ -10,9 +10,9 @@ var circs = [];
 var bgc;
 var uh;
 
-var br=253
-var bg=251
-var bb=248
+window.br=253
+window.bg=251
+window.bb=248
 
 var stop = false;
 var stopBuffer;
@@ -36,7 +36,7 @@ function setup() {
   cnv = createCanvas(windowWidth, windowHeight);
   cnv.mouseOut(mOut);
   ww = createVector(windowWidth, windowHeight);
-  bgc = color(br,bg,bb);
+  bgc = color(window.br,window.bg,window.bb);
   background(bgc);
   mp = createVector(0,0);
   mmp = createVector(0,0);
@@ -87,14 +87,14 @@ function draw() {
   //   stop=false
   // }
   if (clearState) {
-    background(br,bg,bb,255*.2);
+    background(window.br,window.bg,window.bb,255*.2);
     clearBuffer -= 1;
     if (clearBuffer<=0) {
       newPage()
     }
     return
   }
-  let c = color(br,bg,bb,1)
+  let c = color(window.br,window.bg,window.bb,1)
   if (circs.length>10) {
     background(c);
   }

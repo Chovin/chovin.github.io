@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
     <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --banner-color: rgba(253,251,248,1);
+            --banner-color-off: rgba(253,251,248,0)
+        }
         body {
             padding-top: 0;
         }
@@ -36,14 +40,14 @@
         }
 
         body>header iframe {
-            background-color: rgba(253,251,248,1);
+            background-color: var(--banner-color);
         }
         .invis-all {
             opacity: 0;
             cursor: auto;
         }
         body>header h2 {
-            color: rgba(253,251,248,1);
+            color: var(--banner-color);
             background-color: rgba(14, 13, 4, 0.907);
             width: 180px;
             margin: 0 auto;
@@ -53,13 +57,13 @@
             cursor: pointer;
         }
         .invis {
-            color: rgba(253,251,248,0);
+            color: var(--banner-color-off);
         }
         body>header h1 {
             font-family: Helvetica, sans-serif;
             font-weight: 1200;
             /* color: white; */
-            color: rgba(253,251,248,1);
+            color: var(--banner-color);
             margin: 0 auto;
             /* width: 100%; */
             /* text-align: center; */
@@ -103,7 +107,7 @@
 
         @keyframes shadow {
             from {
-                color: rgba(253,251,248,1);
+                color: var(--banner-color);
                 text-shadow: 0px 0px 4px rgba(84, 83, 81, 0);
             }
             to {
@@ -141,6 +145,16 @@
                 }
             }
         }
+        
+        let root = document.documentElement;
+        root.style.setProperty(
+            '--banner-color',
+            'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)'
+        )
+        root.style.setProperty(
+            '--banner-color-off',
+            'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',0)'
+        )
 
         var clicked = false;
         var moveEl = document.getElementById('move');
