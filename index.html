@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chovin Carlson - Creative Coding</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 0;
+        }
+        body>header {
+            width: 100%;
+            max-width: 100%;
+            height: 475px;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 0;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+            supported by Chrome, Edge, Opera and Firefox */
+        }
+
+        body>header {
+            position: relative;
+        }
+
+        body>header iframe {
+            background-color: rgba(253,251,248,1);
+        }
+        .invis-all {
+            opacity: 0;
+            cursor: auto;
+        }
+        body>header h2 {
+            color: rgba(253,251,248,1);
+            background-color: rgba(14, 13, 4, 0.907);
+            width: 180px;
+            margin: 0 auto;
+            padding-bottom: 3px;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out, color 1s ease-in-out;
+            cursor: pointer;
+        }
+        .invis {
+            color: rgba(253,251,248,0);
+        }
+        body>header h1 {
+            font-family: Helvetica, sans-serif;
+            font-weight: 1200;
+            /* color: white; */
+            color: rgba(253,251,248,1);
+            margin: 0 auto;
+            /* width: 100%; */
+            /* text-align: center; */
+            /* position:absolute; */
+            /* margin-top:50%; */
+            /* bottom: 50%; */
+            font-size: 140pt;
+            padding-right: 0px;
+            /* left:50%; */
+            /* text-shadow: 0px 2px 0px rgba(81, 81, 81, 0.55); */
+            animation: shadow 3s linear 7s 1 forwards;
+            /* animation-delay: 7s; */
+            transition: padding 2s ease-in-out;
+        }
+        body>header iframe {
+            width: 100%;
+            height: 100%;
+        }
+        .mouse-off {
+            pointer-events: none;
+        }
+        body>header .table {
+            position:absolute;
+            top: 0;
+            margin: 0 auto;
+            width: 100%;
+            display: table;
+            overflow: hidden;
+            height: 100%;
+        }
+        body>header .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        #banner-sep {
+            width: 70%;
+            margin-top: 20px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes shadow {
+            from {
+                color: rgba(253,251,248,1);
+                text-shadow: 0px 0px 4px rgba(84, 83, 81, 0);
+            }
+            to {
+                color: rgba(255,255,255,1);
+                text-shadow: 0px 3px 0px rgba(68, 67, 65, 0.496);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <iframe id="sketch" src="sketch.html" frameborder="0"></iframe>
+        <div id="blocker" class="table noselect" onclick="noMouse(this)">
+            <div class="table-cell">
+                <h1 id="move">CC</h1>
+                <h2 id="inst" class="invis-all" onclick=" clickDrag(this)">your turn</h2>
+                <div id="dragIcon"></div>
+            </div>
+        </div>
+    </header>
+    <hr id="banner-sep">
+    <main>
+        <section>
+            <header>
+                <h1>Chovin Carlson</h1>
+            </header>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus officiis enim aperiam, alias molestias expedita praesentium provident molestiae veritatis sint, laudantium rerum earum tenetur iusto? Dicta officiis doloremque magni veritatis.</p>
+        </section>
+    </main>
+    <script>
+        function noMouse(el) {
+            if (clickStart) {
+                if (!el.className.includes('mouse-off')) {
+                    el.className = el.className + ' mouse-off'
+                }
+            }
+        }
+
+        var clicked = false;
+        var moveEl = document.getElementById('move');
+        var sketch = document.getElementById('sketch')
+        var ostx = 0;
+        var firstDone = false;
+        var firstDoneDo = true;
+        var clickStart = false;
+        var onceDone = false;
+
+        function clickDrag(el) {
+            if (firstDone && !onceDone) {
+                onceDone = true
+                el.className = 'invis';
+                setTimeout(() => {
+                    el.innerHTML = 'click + drag'
+                    el.className = '';
+                    setTimeout(() => {
+                        el.className = 'invis';
+                        setTimeout(() => {
+                            el.innerHTML = 'click to clear'
+                            el.className = '';
+                            setTimeout(() => {
+                                clickStart = true
+                                setTimeout(() => {
+                                    noMouse(document.getElementById('blocker'))
+                                    el.className = 'invis-all'
+                                }, 1200);
+                            }, 300);
+                        }, 1200);    
+                    }, 1200);
+                }, 1500);
+            }
+            if (clickStart) {
+                el.className = 'invis-all'
+            }
+        }
+
+        setInterval(() => {
+            firstDone = sketch.contentWindow.firstDone;
+            if (firstDone && firstDoneDo) {
+                firstDoneDo = false
+                setTimeout(() => {
+                    el = document.getElementById('inst')
+                    el.className = ''
+                }, 2000);
+            }
+        //     let stx = sketch.contentWindow.stx;
+        //     stx *=.8;
+        //     console.log(stx)
+        //     console.log(sketch.contentWindow.windowWidth)
+        //     if (stx != ostx) {
+        //         ostx = stx;
+        //         if (Math.random()>.3) {
+        //             stx = 0;
+        //         }
+        //         if (stx>0) {
+        //             // stx = .5-stx;
+        //             moveEl.style.paddingLeft = '0px';
+        //             moveEl.style.paddingRight = (stx * sketch.contentWindow.windowWidth) + 'px'
+        //         } else {
+        //             stx = Math.abs(stx)
+        //             // stx = .5-stx;
+        //             moveEl.style.paddingRight = '0px';
+        //             moveEl.style.paddingLeft = (stx * sketch.contentWindow.windowWidth) + 'px'
+        //         }
+        //     }
+        }, 500);
+    </script>
+</body>
+</html>
