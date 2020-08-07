@@ -145,16 +145,6 @@
                 }
             }
         }
-        
-        let root = document.documentElement;
-        root.style.setProperty(
-            '--banner-color',
-            'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)'
-        )
-        root.style.setProperty(
-            '--banner-color-off',
-            'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',0)'
-        )
 
         var clicked = false;
         var moveEl = document.getElementById('move');
@@ -164,6 +154,16 @@
         var firstDoneDo = true;
         var clickStart = false;
         var onceDone = false;
+
+        let root = document.documentElement;
+        root.style.setProperty(
+            '--banner-color',
+            'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)'
+        )
+        root.style.setProperty(
+            '--banner-color-off',
+            'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',0)'
+        )
 
         function clickDrag(el) {
             if (firstDone && !onceDone) {
