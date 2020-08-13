@@ -8,11 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --banner-color: rgba(253,251,248,1);
-            --banner-color-off: rgba(253,251,248,0)
+            --banner-color: rgba(252,246,238,1);
+            --banner-color-off: rgba(252,246,238,0);
+            --banner-color-dark: rgba(244,233,214,1);
+            --color-secondary: rgba(204,193,144,1);
         }
         body {
             padding-top: 0;
+            color: rgb(30,30,30);
         }
         body>header {
             width: 100%;
@@ -47,7 +50,8 @@
             cursor: auto;
         }
         body>header h2 {
-            color: var(--banner-color);
+            /* color: var(--banner-color); */
+            color: white;
             background-color: rgba(14, 13, 4, 0.907);
             width: 180px;
             margin: 0 auto;
@@ -101,6 +105,7 @@
         #banner-sep {
             width: 70%;
             margin-top: 20px; 
+            margin-bottom: 40px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -115,6 +120,269 @@
                 text-shadow: 0px 3px 0px rgba(68, 67, 65, 0.496);
             }
         }
+
+        .video-collection {
+            overflow: hidden;
+            width: 100.1%;
+        }
+        
+        .video-aside {
+            position: relative;
+            top: 0;
+            width:33.33%;
+            display: inline-block;
+        }
+
+        .cover {
+            display: table;;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width:100%;
+            color: white;
+            text-align: center;
+            /* background-color: rgba(40,45,50,.5); */
+            transition: all 0.2s ease-in-out;
+        }
+
+        .cover:hover {
+            /* background-color: rgba(40,45,50,0); */
+            color: rgba(0,0,0,0);
+        }
+
+        .cover h3 {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .play-button {
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            margin-top: -24px;
+            left: 50%;
+            margin-left: -20px;
+            width: 48px;
+            height: 48px;
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 24px 0px 24px 40px;
+            border-color: transparent transparent transparent white;
+            transition: opacity .1s ease-in-out;
+            opacity: 0;
+        }
+
+        .video-aside:hover .play-button {
+            opacity: 1;
+            transition: opacity .2s ease-in-out;
+        }
+
+        .currently-playing {
+            opacity: 0;
+        }
+
+        #tab-nav {
+            margin-top: 2em;
+        }
+
+        #tab-contents>section {
+            display: none;
+        }
+
+        #tab-contents>section[visible="true"] {
+            display: flex !important;
+        }
+
+        .hoverplay {
+            width: 100%;
+        }
+
+        main nav ul {
+            margin: 0 auto;
+        }
+
+        main nav ul li {
+            margin: 0 1em;
+            padding: .5em 1.3em;
+            padding-top: 0em;
+            margin-top: .5em;
+            position: relative;
+            color: rgb(110, 90, 90);
+            cursor: pointer;
+            transition: background-color .15s ease-in-out;
+            transition-property: background-color, padding-top, margin-top;
+        }
+
+        main nav ul li::after {
+            content: '';
+            width: calc(100% + 2em);
+            position: absolute;
+            bottom: 0;
+            left: -.5em;
+            height: 1px;
+            transition: background-color .15s ease-in-out;
+            transition-property: left, height, width;
+        }
+
+        li[selected] {
+            background-color: var(--banner-color-dark);
+            color: rgb(64, 80, 87);
+            padding-top: .5em;   
+            margin-top: 0em;
+        }
+
+        li[selected]::after {
+            content: '';
+            width: calc(100% + 3em);
+            padding: 0px;
+            position: absolute;
+            bottom: 0;
+            left: -1.5em;
+            height: 2px;
+            background-color: var(--banner-color-dark);
+        }
+
+        .showcase-container section {
+            display: flex;
+            /* flex-direction: row; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .showcase-container section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .cell {
+            box-sizing: border-box;
+            width: 50%;
+            padding: 2em;
+            height: auto;
+            /* align-self: center; */
+        }
+
+        .showcase-container section:nth-child(even) .cell {
+            text-align: right;
+        }
+        .showcase-container section:nth-child(even) .display {
+            text-align: center;
+        }
+
+        .cell.display {
+            /* background-color: black; */
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .cell video {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .cell h3 {
+            /* margin-top: 0; */
+        }
+
+        .cell.playbutton::after {
+            content: '';
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            margin-top: -24px;
+            left: 50%;
+            margin-left: -20px;
+            width: 48px;
+            height: 48px;
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 24px 0px 24px 40px;
+            border-color: transparent transparent transparent white;
+            transition: opacity .1s ease-in-out;
+            opacity: 0;
+        }
+
+        .hoverplay:hover .playbutton::after {
+            opacity: 1;
+            transition: opacity .2s ease-in-out;
+        }
+
+        .playbutton[hidebutton="true"]::after {
+            opacity: 0 !important;
+        }
+
+        .playbutton[hidebutton="false"]::after {
+            opacity: 1 !important;
+        }
+
+        /* https://embedresponsively.com/ */
+        .embed-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            margin-bottom: 6px;
+            height: 0; 
+            overflow: hidden; 
+            max-width: 100%; 
+            background-position: center;
+            background-size: contain;
+        }
+        .embed-container iframe, .embed-container object, .embed-container embed { 
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+        }
+        .just-image {
+            max-width: 100%;
+        }
+        .embed-container.square {
+            background-clip: content-box;
+            padding-bottom: 55.5%;
+        }
+        .embed-container.square iframe {
+            width: auto;
+            left: 25%;
+        }
+
+        .desktop-hidden {
+            display: none;
+        }
+        @media (max-width: 800px) { 
+            .desktop-hidden {
+                display: block;
+                /* background-color: red; */
+            }
+            .mobile-hidden {
+                display: none;
+            }
+            .video-aside {
+                width: 100%;
+            }
+            .showcase-container section .cell, .showcase-container section:nth-child(even) .cell {
+                text-align: center;
+                width: 100%;
+            }
+            .showcase-container section {
+                border-bottom: 1px solid var(--color-bg-secondary);
+                margin-bottom: 3em;
+            }
+            .showcase-container:last-child section:last-child {
+                border-color: transparent;
+            }
+            #tab-contents>section {
+                display: flex;
+            }
+            .embed-container.square iframe {
+                left: 0;
+                width: 100%;
+            }
+            .cell.playbutton::after {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -133,11 +401,413 @@
         <section>
             <header>
                 <h1>Chovin Carlson</h1>
+                <h5>creative coder / software developer / CS educator</h5>
+                <p>
+                    I love the wonder of creating and the joy of exploration in art, music, and code. I want others to experience that as well, so I make experiences that invite others to join in. Art as a whole is alive while you make it, so why should the brush ever stop moving?
+                    <!-- I love the wonder of creating and the joy of exploration in art, music, and code, so I make experiences that invite others to join in as well. Art as a whole is alive while you make it, so why should we ever let the paint dry? -->
+                </p>
             </header>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus officiis enim aperiam, alias molestias expedita praesentium provident molestiae veritatis sint, laudantium rerum earum tenetur iusto? Dicta officiis doloremque magni veritatis.</p>
         </section>
+        <!-- <hr> -->
+        <nav id="tab-nav" class="mobile-hidden">
+            <ul>
+                <li selected="true" data='interactive'>Interactives</li>
+                <li data='livecoding'>Live coding</li>
+                <li data='games'>Little games</li>
+            </ul>
+        </nav>
+        <div id="tab-contents"></div>
+        <section id="tab-interactive"></section>
+        <section id="tab-interactive"></section>
     </main>
     <script>
+        var vids = {
+            'interactive': [
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},
+                {'filename': 'flower', 'name': 'Flower',
+                 'size': 'tall',
+                 'muted': true},
+                {'filename': 'bullss', 'name': 'Bull',
+                 'size': 'wide',
+                 'muted': false},
+            ],
+            'livecoding': [
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},                 
+            ],
+            'games': [
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},
+                {'filename': 'grass-s', 'name': 'Grass',
+                 'size': 'wide',
+                 'muted': true},   
+            ]
+        }
+
+        var tabsItems = {
+            'interactive': [
+                {   'title': 'Grass',
+                    'desc': "Audio (breath) and gesture-interactive wind on grass. First experiment with interactive art in TouchDesigner using instancing and procedural generation.",
+                    'filename': 'grass-s',
+                    'muted': true},
+                {   'title': 'Flower',
+                    'desc': "Gesture-interactive rotation and lighting of an ascii flower. On mobile devices using Pythonista. Model rendering is saved to the device for realtime interaction with lighting and transforms.",
+                    'filename': 'flower',
+                    'muted': true},
+                {   'title': 'Bullhead - GHF I',
+                    'desc': "Part of a series of audience and audio interactive visuals played at the Guam Hacktoberfest 2019 vaporwave-themed event with live music by NOUGA JR. Skull model from the Smithsonian National Museum of Natural History.",
+                    'filename': 'bullss',
+                    'muted': false},
+                {   'title': 'Vaporwave transitions - GHF II',
+                    'desc': "Guam Hacktoberfest 2019 visuals II with music by NOUGA JR. Audience and audio-reactive visuals with MIDI and OSC hooks. An ipad interface was developed for live choreographing. During interludes, a hidden webcam was used to capture audience movement and to follow audience glowsticks as spawn points for neon butterflies.",
+                    'filename': 'hf-bs',
+                    'muted': false},
+                {   'title': 'Vaporwave city - GHF III',
+                    'desc': "Guam Hacktoberfest 2019 live visuals III with music by NOUGA JR. Audio-reactive visuals with MIDI and OSC hooks.",
+                    'filename': 'hf-flat',
+                    'muted': false},
+                {   'title': 'Vaporwave dunes - GHF IV',
+                    'desc': "Guam Hacktoberfest 2019 visuals IV with music by NOUGA JR. Audio-reactive visuals with MIDI and OSC hooks.",
+                    'filename': 'hf-orange',
+                    'muted': false},
+                {   'title': 'Vaporwave planet - GHF V',
+                    'desc': "Guam Hacktoberfest 2019 visuals V. Audio-reactive visuals with MIDI and OSC hooks.",
+                    'filename': 'hf-sn',
+                    'muted': true},
+                {   'title': 'Vaporwave feedback - GHF VI',
+                    'desc': "Guam Hacktoberfest 2019 visuals VI. Audio-reactive visuals with MIDI and OSC hooks.",
+                    'filename': 'feedback',
+                    'muted': true},
+            ],
+            'livecoding': [
+                {   'title': 'House by the waves',
+                    'desc': "Early live coding experiment in creating ambient music with FoxDot.",
+                    'filename': 'housebythewaves',
+                    'embed': 'https://www.youtube.com/embed/nkU8r5QKN3Y?start=356',
+                    'muted': true},
+                {   'title': 'Jamcord',
+                    'desc': 'Published chat bot software to embed a collaborative live coding environment into Discord, a popular chatroom software. Bringing live coding to a public area makes it more likely that people will stumble upon "jams" organically and lowers the barrier to entry significantly by providing a collaborative, playful space without any installation hurdles.',
+                    'filename': 'jamcord',
+                    'embed':
+                    'https://www.youtube.com/embed/VTxrPCbBbEI?start=460',
+                    'muted': true},
+                {   'title': 'TouchDesigner FoxDot and Midi Fighter integrations',
+                    'desc': 'Integrations for live coding language FoxDot and the midi controller Midi Fighter 3D for the realtime interactive multimedia tool TouchDesigner. These integrations allow for live coded music to be easily intertwined with visuals, a midi controller, and all the audience-interactive abilities of TouchDesigner. Music generates art, art generates music, and the audience and performer become active agents in between.',
+                    'filename': 'tdfoxdot',
+                    'image': true,
+                    'muted': true},
+            ],
+            'games': [
+                {   'title': 'Litghtsaber',
+                    'desc': 'PICO-8 game prototype played on a desktop browser with your phone as the controller (gyro + accelerometer). Playable <a href="https://litghtsaber.chovin.repl.co/" target="_blank">here</a>. Set up at various programming awareness/education events. This game is completely statically-hosted. No server is needed and communication is done peer to peer between browsers.',
+                    'filename': 'litghtsaber',
+                    'embed': 'https://www.youtube.com/embed/_kaW3OuzOQE',
+                    'square': true,
+                    'muted': true},
+                {   'title': 'Snakey',
+                    'desc': "A little exploration game on a vibrant island.. as a snake! Made in PICO-8 with terrain and biome generation. There are secrets scattered across this island. Are you collecting them for a reason? ..or are you just a derpy snake?",
+                    'filename': 'snakey',
+                    'embed': 'https://www.youtube.com/embed/WdPKn3j2AAE',
+                    'square': true,
+                    'muted': true},
+            ]
+        }
+
+        // <div class='embed-container'><iframe src='https://www.youtube.com/embed/nkU8r5QKN3Y' frameborder='0' allowfullscreen></iframe></div>
+
+
+        // for (let name of Object.keys(vids)) {
+        //     let el = document.getElementById('vids-' + name);
+        //     el.setAttribute('class', (el.className + ' video-collection').trim())
+        //     let vs = vids[name];
+        //     for (v of vs) {
+        //         let cnt = document.createElement("div");
+        //         cnt.setAttribute('class', 'video-aside hoverplay noselect');
+        //         let vel = document.createElement("video");
+        //         cnt.appendChild(vel);
+        //         vel.setAttribute('width', '100%')
+        //         vel.toggleAttribute('loop');
+        //         if (v['muted']) {
+        //             vel.setAttribute('muted', true);
+        //         }
+        //         vel.setAttribute('poster', 'assets/' + v['filename'] + '.png');
+        //         let s1 = document.createElement("source");
+        //         let s2 = document.createElement("source");
+        //         s1.setAttribute('src', 'assets/' + v['filename'] + '.webm');
+        //         s1.setAttribute('src', 'assets/' + v['filename'] + '.mp4');
+        //         s1.setAttribute('type', 'video/webm');
+        //         s1.setAttribute('type', 'video/mp4');
+        //         let vmg = document.createElement("img");
+        //         vmg.setAttribute('src', 'assets/' + v['filename'] + '.png');
+        //         vmg.setAttribute('alt', v['name'] + ' video thumbnail');
+        //         vel.appendChild(s1);
+        //         vel.appendChild(s2);
+        //         vel.appendChild(vmg);
+
+        //         let ecv = document.createElement("div");
+        //         ecv.setAttribute('class', 'cover');
+        //         cnt.appendChild(ecv);
+        //         let eh = document.createElement("h3");
+        //         eh.innerHTML = v['name'];
+        //         ecv.appendChild(eh);
+
+        //         el.appendChild(cnt);
+        //     }
+
+        // }
+
+        var tabPage;
+        var thePlayingOne = null;
+
+        let tnv = document.getElementById('tab-nav');
+        var tabs = tnv.children[0].children
+        for (el of tabs) {
+            if (el.getAttribute('selected')) {
+                tabPage = el.getAttribute('data')
+            }
+            (function(el) {
+                el.addEventListener('click', function () {
+                    for (tel of tabs) {
+                        if (tel.getAttribute('selected')) {
+                            tel.removeAttribute('selected')
+                        }
+                    }
+
+                    el.setAttribute('selected', true);
+
+                    if (tabPage != el.getAttribute('data')) {
+                        if (thePlayingOne) {
+                            thePlayingOne.stop()
+                        }
+                        // pause youtube videos without messing with API
+                        for (frame of document.querySelectorAll('.showcase-container[visible] iframe')) {
+                            if (frame.getAttribute('src').startsWith('http')) {
+                                frame.setAttribute('src', frame.getAttribute('src'))
+                            }
+                        }
+                    }
+
+                    tabPage = el.getAttribute('data')
+
+                    let cel = document.getElementById('tab-contents');
+                    for (tel of cel.children) {
+                        if (tel.id == 'tab-' + tabPage) {
+                            tel.setAttribute('visible', true);
+                        } else if (tel.getAttribute('visible')) {
+                            tel.removeAttribute('visible');
+                        }
+                    }
+                })
+            })(el)
+        }
+
+        for (let name of Object.keys(tabsItems)) {
+            let elcnt = document.getElementById('tab-contents');
+            let el = document.createElement('section');
+            el.setAttribute('id', 'tab-' + name);
+            el.setAttribute('class', 'showcase-container');
+            if (name == tabPage) {
+                el.setAttribute('visible', true);
+            }
+            let mtel = document.createElement('h2');
+            mtel.setAttribute('class', 'section-header desktop-hidden');
+            let title = document.querySelector('li[data='+name+']').innerHTML;
+            mtel.innerHTML = title;
+            el.appendChild(mtel)
+            let items = tabsItems[name];
+            for (item of items) {
+
+            // <section id="tab-item-feedback">
+            //     <div class="cell display">
+            //         <video controls src="assets/feedback.webm" poster="assets/feedback.png"></video>
+            //     </div>
+            //     <div class="cell">
+            //         <h3>Vaporwave feedback - GHF VI</h3>
+            //         <p>Guam Hacktoberfest 2019 visuals VI. Audio-reactive visuals with MIDI and OSC hooks.
+            //         </p>
+            //     </div>
+            // </section>
+
+                let cnt = document.createElement("section");
+                cnt.setAttribute('id', 'tab-item-' + item['filename']);
+                cnt.setAttribute('class','hoverplay');
+                let mstel = document.createElement('h3');
+                cnt.appendChild(mstel);
+                mstel.innerHTML = item['title'];
+                mstel.setAttribute('class', 'desktop-hidden');
+
+                let vcnt = document.createElement('div');
+                cnt.appendChild(vcnt);
+                
+                let tcnt = document.createElement('div');
+                cnt.appendChild(tcnt);
+                tcnt.setAttribute('class', 'cell');
+                let hel = document.createElement('h3');
+                tcnt.appendChild(hel);
+                hel.setAttribute('class', 'mobile-hidden');
+                hel.innerHTML = item['title'];
+                let pel = document.createElement('p');
+                tcnt.appendChild(pel);
+                pel.innerHTML = item['desc']
+
+                vcnt.setAttribute('class', 'video-aside noselect cell display');
+                if (item.image) {
+                    let vel = document.createElement('img');
+                    vcnt.appendChild(vel);
+                    vel.setAttribute('class', 'just-image');
+                    vel.setAttribute('src', 'assets/' + item['filename'] + '.png');
+                    vel.setAttribute('alt', item['title']);
+                    vel.setAttribute('muted', true);
+                } else if (item.embed) {
+                    // <div class='embed-container'>
+                    //     <iframe src='https://www.youtube.com/embed/nkU8r5QKN3Y' 
+                    //     frameborder='0' 
+                    //     allowfullscreen></iframe>
+                    // </div>
+                    let vel = document.createElement('div');
+                    vcnt.appendChild(vel);
+                    if (item.square) {
+                        vel.setAttribute('class', 'embed-container square');
+                    } else {
+                        vel.setAttribute('class', 'embed-container');
+                    }
+                    vel.setAttribute('muted', true);
+                    let frame = document.createElement('iframe');
+                    vel.appendChild(frame);
+                    frame.setAttribute('src', item['embed']);
+                    vel.style.backgroundImage = 'url(assets/'+item['filename']+'.png)';
+                    frame.setAttribute('frameborder', '0');
+                    frame.toggleAttribute('allowfullscreen');
+                } else {
+                    let vel = document.createElement("video");
+                    vcnt.appendChild(vel);
+                    vel.setAttribute('class', 'mobile-hidden');
+                    // vel.setAttribute('width', '100%')
+                    vel.toggleAttribute('loop');
+                    if (item['muted']) {
+                        vel.setAttribute('muted', true);
+                    }
+                    vel.setAttribute('poster', 'assets/' + item['filename'] + '.png');
+                    let s1 = document.createElement("source");
+                    let s2 = document.createElement("source");
+                    s1.setAttribute('src', 'assets/' + item['filename'] + '.webm');
+                    s2.setAttribute('src', 'assets/' + item['filename'] + '.mp4');
+                    s1.setAttribute('type', 'video/webm');
+                    s2.setAttribute('type', 'video/mp4');
+                    let vmg = document.createElement("img");
+                    vmg.setAttribute('src', 'assets/' + item['filename'] + '.png');
+                    vmg.setAttribute('alt', item['title'] + ' video thumbnail');
+                    vel.appendChild(s1);
+                    vel.appendChild(s2);
+                    vel.appendChild(vmg);
+
+                    // mobile override
+                    let mvel = vel.cloneNode(true);
+                    vcnt.appendChild(mvel);
+                    mvel.setAttribute('class', 'desktop-hidden');
+                    mvel.toggleAttribute('controls');
+                    mvel.toggleAttribute('loop');
+                }
+
+                // let ecv = document.createElement("div");
+                // ecv.setAttribute('class', 'cover');
+                // cnt.appendChild(ecv);
+                // let eh = document.createElement("h3");
+                // eh.innerHTML = v['name'];
+                // ecv.appendChild(eh);
+
+                el.appendChild(cnt);
+            }
+            elcnt.appendChild(el);
+        }
+
+        
+        let els = document.getElementsByClassName('hoverplay')
+        for (el of els) {
+            let del = el.children[1];
+            (function(el, del) {
+                if (del.children[0].className == 'just-image') {
+                    // do nothing
+                } else if (del.children[0].className == 'embed-container') {
+                    // can't tell if the video is paused or not
+                } else if (del.children[0].getAttribute('muted')) {
+                    el.addEventListener('mouseenter', function() {
+                        del.children[0].play()
+                    })
+                    el.addEventListener('mouseleave', function() {
+                        del.children[0].pause()
+                    })
+                } else {
+                    del.className += ' playbutton'
+                    el.__v_playing = false
+                    del.children[0].loop = false
+                    del.addEventListener('click', function() {
+                        if (el.__v_playing) {
+                            del.children[0].pause()
+                            el.__v_playing = false
+                            del.setAttribute('hidebutton', false)
+                            // del.style.opacity = 1
+                        } else {
+                            if (thePlayingOne) {
+                                thePlayingOne.stop()
+                            }
+                            thePlayingOne = {
+                                stop: (function(el, del) {
+                                    return function() {
+                                        if (el.__v_playing) {
+                                            del.children[0].pause()
+                                            el.__v_playing = false
+                                            del.removeAttribute('hidebutton')
+                                        }
+                                    }
+                                })(el, del)
+                            }
+
+                            del.children[0].play()
+                            el.__v_playing = true
+                            del.setAttribute('hidebutton', true)
+                            // del.style.opacity = 0
+                        }
+                        // el.children[1].style.opacity = 0
+                    })
+                    del.children[0].addEventListener('ended', function() {
+                        el.__v_playing = false
+                        // del.style.opacity = 1
+                        del.setAttribute('hidebutton', false)
+                    })
+                    el.addEventListener('mouseenter', function() {
+                        if (!el.__v_playing) {
+                            // del.style.opacity = ''
+                            del.removeAttribute('hidebutton')
+                            // el.children[1].style.opacity = ''
+                        }
+                    })
+                }
+            })(el, del)
+        }
+        // remove text nodes added in firefox
+        let vcs = document.getElementsByClassName('video-collection');
+        for (vc of vcs) {
+            for (v of vc.childNodes) {
+                if (v.nodeName == '#text' && !v.data.trim()) {
+                    vc.removeChild(v)
+                }
+            }
+        }
+
         function noMouse(el) {
             if (clickStart) {
                 if (!el.className.includes('mouse-off')) {
@@ -187,7 +857,7 @@
         }
 
         setInterval(() => {
-            console.log('rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)')
+            // console.log('rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)')
             root.style.setProperty(
                 '--banner-color',
                 'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)'
@@ -195,6 +865,14 @@
             root.style.setProperty(
                 '--banner-color-off',
                 'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',0)'
+            )
+            root.style.setProperty(
+                '--banner-color-dark',
+                'rgba('+(sketch.contentWindow.br*.97)+','+(sketch.contentWindow.bg*.95)+','+(sketch.contentWindow.bb*.9)+',1)'
+            )
+            root.style.setProperty(
+                '--color-secondary',
+                'rgba('+(sketch.contentWindow.br*.81)+','+(sketch.contentWindow.bg*.785)+','+(sketch.contentWindow.bb*.606)+',1)'
             )
 
             firstDone = sketch.contentWindow.firstDone;

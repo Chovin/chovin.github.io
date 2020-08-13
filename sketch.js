@@ -10,9 +10,9 @@ var circs = [];
 var bgc;
 var uh;
 
-window.br=253
-window.bg=251
-window.bb=248
+window.br=252
+window.bg=246
+window.bb=238
 
 var stop = false;
 var stopBuffer;
@@ -210,14 +210,14 @@ function newCircs() {
   if (rt >= balls/2-rn-2) {
     rt = 0;
   } else {
-    console.log('should override', rt, rn)
+    // console.log('should override', rt, rn)
   }
   let rxx = 0;
   for (let i=0; i<balls; i++) {
     if (rt != 0 && i>=rt && i<rt+rn) {
-      console.log(rx)
+      // console.log(rx)
       if (rx) {
-        console.log('k')
+        // console.log('k')
       }
       rxx = rx;
     } else { 
@@ -237,7 +237,7 @@ class Circ {
     this.x = (random(1)-.5)*.05 + mmp.x*.7 + stx
     // console.log(xoverride, '<--')
     selfOverrideT += 1
-    console.log(selfOverrideT, selfOverrideThreshold)
+    // console.log(selfOverrideT, selfOverrideThreshold)
     if (selfOverrideT > selfOverrideThreshold) {
       if (selfOverrideC > 0) {
         selfOverrideC -= 1
@@ -247,7 +247,7 @@ class Circ {
       }
     }
     if (xoverride) {
-      console.log('override')
+      // console.log('override')
       this.x = xoverride + randz(.1)
     }
     this.r = random(.3) + .1
