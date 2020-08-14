@@ -31,13 +31,22 @@ var selfOverrideThreshold;
 var selfOverrideT;
 var selfOverrideX;
 window.firstDone = false;
+var thin;
+
+var startCountdown = 10
+
+var probably_mobile = false;
+var double_tap_c;
+var runDone = false
 
 function setup() {
+  double_tap_c = 0;
   cnv = createCanvas(windowWidth, windowHeight);
   cnv.mouseOut(mOut);
+  thin = windowWidth < windowHeight;
   ww = createVector(windowWidth, windowHeight);
-  bgc = color(window.br,window.bg,window.bb);
-  background(bgc);
+  bgc = color(window.br,window.bg,window.bb,255);
+  // background(bgc);
   mp = createVector(0,0);
   mmp = createVector(0,0);
   liveBuffer = 100;
@@ -58,7 +67,12 @@ function setOverride() {
 }
 
 function newPage() {
+  probably_mobile = runDone && windowWidth < 800;
+  // bgc = color(window.br, window.bg, window.bb);
   mOutStopCounter = 500
+  if (probably_mobile) {
+    mOutStopCounter = 400
+  }
   stx = randz(.3)
   window.stx = stx
   stop = false
@@ -67,10 +81,24 @@ function newPage() {
   clearBuffer = 12
   circs = [];
   background(bgc);
-  newCircs()
+  if (probably_mobile) {
+    // stopSpawn()
+  } else {
+    newCircs()
+  }
 }
 
 function draw() {
+  if (double_tap_c > 0) {
+    double_tap_c -= 1
+  }
+  if (startCountdown>0) {
+    background(bgc);
+    startCountdown-=1
+    return
+  }
+
+  // bgc = color(window.br, window.bg, window.bb);
   mOutStopCounter -= 1
   if (mOutStopCounter <= 0) {
     stopSpawn()
@@ -79,8 +107,20 @@ function draw() {
     }
   }
   if (first) {
-    background(bgc);
+    // background(bgc);
+    // console.log('hmmmmm')
+    // newPage()
+    // background(window.br,window.bg,window.bb,255*.2);
     first = false
+    // why is the background wonky?
+    // setOverride()
+    // newPage()
+    // strokeWeight(2.3)
+    // frameRate(50)
+    // stx = 0;
+    // window.stx = 0
+    // dragTimeCounter = 0
+    return
   }
   // if (liveBuffer>0) {
   //   liveBuffer-=1
@@ -96,7 +136,7 @@ function draw() {
   }
   let c = color(window.br,window.bg,window.bb,1)
   if (circs.length>10) {
-    background(c);
+    background(window.br, window.bg, window.bb, 1);
   }
   let toRemove = []
   for (c of circs) {
@@ -129,7 +169,25 @@ function mouseMoved() {
   dragged = false
 }
 
+// function touchStarted() {
+//   console.log('started')
+//   mouseDragged()
+//   return false;
+// }
+
+// function touchMoved() {
+//   console.log('here')
+//   mouseDragged()
+//   return false;
+// }
+
 function mouseDragged() {
+  if (probably_mobile) {
+    mmp = createVector(mouseX / ww.x, mouseY / ww.y);
+    mmp.sub(.5, .5)
+    return mobileTap()
+  }
+  console.log('mdragged')
   if (stopBuffer<=0 && circs.length==0) {
     cleanSlate()
   }
@@ -147,7 +205,34 @@ function mouseDragged() {
     mmp = createVector(mouseX / ww.x, mouseY / ww.y);
     mmp.sub(.5, .5)
   }
+  return false
 }
+
+function mobileTap() {
+  if (double_tap_c > 0) {
+    double_tap_c = 0
+    return mobileDoubleTap()
+  }
+  double_tap_c = 15
+  
+  let nbs = 1+random(random(5));
+  console.log(nbs)
+  for (let i=0; i<nbs; i++) {
+    let bx = mmp.x + randz(.05)
+    circs.push(new Circ(random(2), bx))
+  }
+}
+
+function mobileDoubleTap() {
+  cleanSlate()
+  stopSpawn()
+}
+
+// function touchEnded() {
+//   console.log('ended')
+//   mouseReleased()
+//   return false;
+// }
 
 function mouseReleased() {
   setTimeout(() => {
@@ -159,6 +244,10 @@ function mouseClicked() {
   // if (stop && stopBuffer <= 0) {
   //   clearState = true
   // }
+  if (probably_mobile) {
+    return mobileTap()
+  }
+
   if (dragged) {
     return
   }
@@ -168,6 +257,7 @@ function mouseClicked() {
 }
 
 function cleanSlate() {
+  runDone = true
   if (stop && stopBuffer <= 0) {
     clearState = true
   } else {
@@ -234,7 +324,13 @@ class Circ {
   
   new(delay, xoverride) {
     this.delay = delay
-    this.x = (random(1)-.5)*.05 + mmp.x*.7 + stx
+    let mult = .7;
+    let rndmult = .05
+    if (thin) {
+      mult = .95;
+      rndmult = .4;
+    }
+    this.x = (random(1) - .5) * rndmult + mmp.x * mult + stx
     // console.log(xoverride, '<--')
     selfOverrideT += 1
     // console.log(selfOverrideT, selfOverrideThreshold)
@@ -274,13 +370,19 @@ class Circ {
         this.dead = true
         return
       }
-      this.new(random(50))
+      if (!probably_mobile) {
+        this.new(random(50))
+      }
       return
     }
     let b = atan2(this.x-mmp.x, this.y-mmp.y)
     this.a = this.a*.9 //+ b*.1 * (.5-dist(this.x,mmp.x,this.y,mmp.y))
+    let amult = .3;
+    if (thin) {
+      amult = .5;
+    }
     if (random(100)<70) {
-      this.a += (random(1)-.5)*.3
+      this.a += (random(1) - .5) * amult
     } else if (random(100)<95) {
       this.a *= .6
     }
@@ -300,7 +402,11 @@ class Circ {
         dy = dy * (dd) - sin(b + rd) * sp * (1 - dd);
       }
     }
-    this.x += dx
+    let dxmult = 1;
+    if (thin) {
+      dxmult = 1.7;
+    }
+    this.x += dx * dxmult
     this.y += dy
   }
   
