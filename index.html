@@ -901,27 +901,43 @@
 
         setInterval(() => {
             // console.log('rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)')
-            root.style.setProperty(
-                '--banner-color',
-                'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)'
-            )
-            root.style.setProperty(
-                '--banner-color-off',
-                'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',0)'
-            )
-            root.style.setProperty(
-                '--banner-color-dark',
-                'rgba('+(sketch.contentWindow.br*.97)+','+(sketch.contentWindow.bg*.95)+','+(sketch.contentWindow.bb*.9)+',1)'
-            )
-            root.style.setProperty(
-                '--color-secondary',
-                'rgba('+(sketch.contentWindow.br*.81)+','+(sketch.contentWindow.bg*.785)+','+(sketch.contentWindow.bb*.606)+',1)'
-            )
+            try {
+                root.style.setProperty(
+                    '--banner-color',
+                    'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',1)'
+                )
+                root.style.setProperty(
+                    '--banner-color-off',
+                    'rgba('+sketch.contentWindow.br+','+sketch.contentWindow.bg+','+sketch.contentWindow.bb+',0)'
+                )
+                root.style.setProperty(
+                    '--banner-color-dark',
+                    'rgba('+(sketch.contentWindow.br*.97)+','+(sketch.contentWindow.bg*.95)+','+(sketch.contentWindow.bb*.9)+',1)'
+                )
+                root.style.setProperty(
+                    '--color-secondary',
+                    'rgba('+(sketch.contentWindow.br*.81)+','+(sketch.contentWindow.bg*.785)+','+(sketch.contentWindow.bb*.606)+',1)'
+                )
+            } catch (error) {
+                // just for local dev
+            }
 
             firstDone = sketch.contentWindow.firstDone;
             if (firstDone && firstDoneDo) {
                 document.querySelector('[invis]').toggleAttribute('invis')
-                mobile = document.getElementById('down-button').style.display != 'none';
+                if (window.matchMedia) {
+                    let hasTouch = false;
+                    let hasMouse = false;
+                    if (window.matchMedia("(any-pointer: coarse)").matches) {
+                        hasTouch = true;
+                    }
+                    if (window.matchMedia('(pointer: fine)').matches) {
+                        hasMouse = true;
+                    }
+                    mobile = window.matchMedia("(max-width: 800px)").matches || (hasTouch && !hasMouse)
+                } else {
+                    mobile = screen.width <= 800
+                }
                 let el = document.getElementById('inst')
                 el.innerHTML = "your turn"
                 if (mobile) {
