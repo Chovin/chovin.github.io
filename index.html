@@ -13,6 +13,15 @@
             --banner-color-dark: rgba(244,233,214,1);
             --color-secondary: rgba(204,193,144,1);
         }
+
+        * {
+            -webkit-backface-visibility: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             padding-top: 0;
             color: rgb(30,30,30);
@@ -96,11 +105,13 @@
             width: 100%;
             display: table;
             overflow: hidden;
-            height: 100%;
+            height: calc(100% - 2rem);
+            /* height: 100%; */
         }
         body>header .table-cell {
             display: table-cell;
             vertical-align: middle;
+            padding-top: 2rem;
         }
         #banner-sep {
             width: 70%;
@@ -349,6 +360,13 @@
         .desktop-hidden {
             display: none;
         }
+
+        #down-button {
+            display: none;
+            width: 1em;
+            padding-top: 10px;
+        }
+
         @media (max-width: 800px) { 
             .desktop-hidden {
                 display: block;
@@ -381,17 +399,31 @@
             .cell.playbutton::after {
                 display: none;
             }
+            #down-button {
+                display: inline;
+            }
+        }
+
+        [invis] {
+            background-color: transparent;
         }
 
     </style>
 </head>
 <body>
-    <header>
-        <iframe id="sketch" src="sketch.html" frameborder="0"></iframe>
+    <header id="sketch-container" class="noselect">
+        <iframe id="sketch" src="sketch.html" frameborder="0" class="noselect"></iframe>
+        <!-- https://codepen.io/Oziris/pen/EZdvWq -->
+        <a href="#banner-sep">
+            <svg id="down-button" viewBox="0 0 16 16" fill="none" stroke="rgb(30,30,30)" stroke-width="3" class="chevron"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.0606601717798212 5 L8 11.939339828220179 L14.939339828220179 5"></path>
+            </svg>
+        </a>
         <div id="blocker" class="table noselect" onclick="noMouse(this)">
             <div class="table-cell">
                 <h1 id="move">CC</h1>
-                <h2 id="inst" class="invis-all" onclick=" clickDrag(this)">your turn</h2>
+                <h2 id="inst" class="invis-all" invis onclick=" clickDrag(this)">&NonBreakingSpace;</h2>
                 <div id="dragIcon"></div>
             </div>
         </div>
@@ -568,6 +600,8 @@
         //     }
 
         // }
+
+        var mobile = false;
 
         var tabPage;
         var thePlayingOne = null;
@@ -832,13 +866,22 @@
             if (firstDone && !onceDone) {
                 onceDone = true
                 el.className = 'invis';
+                if (mobile) {
+                    // can't get touch working..
+                    clickStart = true
+                    el.className = 'invis-all'
+                    noMouse(document.getElementById('blocker'))
+                    return
+                }
                 setTimeout(() => {
                     el.innerHTML = 'click + drag'
+                    if(mobile){el.innerHTML = 'paint me'}
                     el.className = '';
                     setTimeout(() => {
                         el.className = 'invis';
                         setTimeout(() => {
                             el.innerHTML = 'click to clear'
+                            if(mobile){el.innerHTML = 'tap to clear'}
                             el.className = '';
                             setTimeout(() => {
                                 clickStart = true
@@ -877,6 +920,21 @@
 
             firstDone = sketch.contentWindow.firstDone;
             if (firstDone && firstDoneDo) {
+                document.querySelector('[invis]').toggleAttribute('invis')
+                mobile = document.getElementById('down-button').style.display != 'none';
+                let el = document.getElementById('inst')
+                el.innerHTML = "your turn"
+                if (mobile) {
+                    el.innerHTML = "tippy tap"
+                    el.className = ''
+                    clickStart = true
+                    noMouse(document.getElementById('blocker'))
+                    setTimeout(() => {
+                        el.className = 'invis-all'
+                    }, 2500)
+                    firstDoneDo = false
+                    return
+                }
                 firstDoneDo = false
                 setTimeout(() => {
                     el = document.getElementById('inst')
